@@ -1,0 +1,6 @@
+[submodule "job-interview-chatbot-backend"]
+	path = job-interview-chatbot-backend
+	url = git@github.com:NicoDoebele/job-interview-chatbot-backend.git
+[submodule "job-interview-chatbot-frontend"]
+	path = job-interview-chatbot-frontend
+	url = git@github.com:NicoDoebele/job-interview-chatbot-frontend.git
