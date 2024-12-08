@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  job-interview-chatbot-ollama:
+    build:
+      context: .
+      dockerfile: Dockerfile.ollama
+    ports:
+      - "11434:11434"
+
+  job-interview-chatbot-rasa:
+    build:
+      context: .
+      dockerfile: Dockerfile.rasa
+    ports:
+      - "5055:5055"
+      - "5005:5005"
+    environment:
+      - OLLAMA_HOST=job-interview-chatbot-ollama
+    depends_on:
+      - job-interview-chatbot-ollama
+
+  job-interview-chatbot-streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    ports:
+      - "8501:8501"
+    environment:
+      - RASA_BASE_URL=http://job-interview-chatbot-rasa:5005
+    depends_on:
+      - job-interview-chatbot-rasa
+
+networks:
+  default:
+    driver: bridge

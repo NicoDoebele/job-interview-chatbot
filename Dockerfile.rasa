@@ -1,0 +1,19 @@
+FROM python:3.9.20
+
+WORKDIR /app
+
+COPY ./job-interview-chatbot-backend .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 5005
+EXPOSE 5055
+
+RUN rasa train
+
+RUN echo '#!/bin/bash\n\
+rasa run actions --cors "*" & \n\
+rasa run --enable-api --cors "*"' > /app/start.sh && \
+chmod +x /app/start.sh
+
+CMD ["/app/start.sh"]
