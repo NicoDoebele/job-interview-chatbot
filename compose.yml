@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.ollama
+    container_name: job-interview-chatbot-ollama
     ports:
       - "11434:11434"
 
@@ -12,6 +13,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.rasa
+    container_name: job-interview-chatbot-rasa
     ports:
       - "5055:5055"
       - "5005:5005"
@@ -24,6 +26,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.streamlit
+    container_name: job-interview-chatbot-streamlit
     ports:
       - "8501:8501"
     environment:
